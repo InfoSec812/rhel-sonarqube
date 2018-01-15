@@ -5,7 +5,7 @@ set -e
 
 ## If the mounted data volume is empty, populate it from the default data
 if ! [[ "$(ls -A /opt/sonarqube/data)" ]]; then
-    cp -ar /opt/sonarqube/data-init /opt/sonarqube/data
+    cp -ar /opt/sonarqube/data-init/* /opt/sonarqube/data/
 fi
 
 ## If the mounted extensions volume is empty, populate it from the default data
