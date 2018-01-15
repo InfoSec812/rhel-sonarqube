@@ -24,9 +24,9 @@ RUN set -x \
     && curl -s -o sonarqube.zip.asc -fSL https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip.asc \
     && gpg --batch --verify sonarqube.zip.asc sonarqube.zip \
     && unzip sonarqube.zip \
-    && mv extensions extensions-init \
-    && mv data data-init \
     && mv sonarqube-$SONAR_VERSION sonarqube \
+    && mv sonarqube/extensions sonarqube/extensions-init \
+    && mv sonarqube/data sonarqube/data-init \
     && chown -R root:root sonarqube \
     && rm sonarqube.zip* \
     && rm -rf $SONARQUBE_HOME/bin/*
