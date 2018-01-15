@@ -27,6 +27,7 @@ RUN set -x \
     && mv sonarqube-$SONAR_VERSION sonarqube \
     && mv sonarqube/extensions sonarqube/extensions-init \
     && mv sonarqube/data sonarqube/data-init \
+    && mkdir -p sonarqube/data \
     && chown -R root:root sonarqube \
     && rm sonarqube.zip* \
     && rm -rf $SONARQUBE_HOME/bin/*
