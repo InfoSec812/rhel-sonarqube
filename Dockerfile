@@ -36,8 +36,9 @@ WORKDIR $SONARQUBE_HOME
 ADD sonar.properties /opt/sonarqube/conf/sonar.properties
 ADD run.sh /opt/sonarqube/bin/run.sh
 CMD /opt/sonarqube/bin/run.sh
-RUN mv /opt/sonarqube/data /opt/sonarqube/data-init && \
-	mv /opt/sonarqube/extensions /opt/sonarqube/extensions-init
+RUN sync
+RUN mv /opt/sonarqube/data /opt/sonarqube/data-init
+RUN mv /opt/sonarqube/extensions /opt/sonarqube/extensions-init
 ADD plugins.sh /opt/sonarqube/bin/plugins.sh
 RUN /opt/sonarqube/bin/plugins.sh pmd gitlab github ldap
 RUN chown root:root /opt/sonarqube -R; \
