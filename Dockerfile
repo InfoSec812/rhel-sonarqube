@@ -24,6 +24,8 @@ RUN set -x \
     && curl -s -o sonarqube.zip.asc -fSL https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-$SONAR_VERSION.zip.asc \
     && gpg --batch --verify sonarqube.zip.asc sonarqube.zip \
     && unzip sonarqube.zip \
+    && mv extensions extensions-init \
+    && mv data data-init \
     && mv sonarqube-$SONAR_VERSION sonarqube \
     && chown -R root:root sonarqube \
     && rm sonarqube.zip* \
@@ -36,11 +38,6 @@ WORKDIR $SONARQUBE_HOME
 ADD sonar.properties /opt/sonarqube/conf/sonar.properties
 ADD run.sh /opt/sonarqube/bin/run.sh
 CMD /opt/sonarqube/bin/run.sh
-RUN sync
-RUN cp -ar /opt/sonarqube/data /opt/sonarqube/data-init
-RUN cp -ar /opt/sonarqube/extensions /opt/sonarqube/extensions-init
-RUN rm -rf /opt/sonarqube/data
-RUN rm -rf /opt/sonarqube/extensions
 ADD plugins.sh /opt/sonarqube/bin/plugins.sh
 RUN /opt/sonarqube/bin/plugins.sh pmd gitlab github ldap
 RUN chown root:root /opt/sonarqube -R; \
