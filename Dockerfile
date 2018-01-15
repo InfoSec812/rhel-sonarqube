@@ -29,6 +29,7 @@ RUN set -x \
     && mv sonarqube/data sonarqube/data-init \
     && mkdir -p sonarqube/data \
     && chown -R root:root sonarqube \
+    && chmod 4655 sonarqube -R \
     && rm sonarqube.zip* \
     && rm -rf $SONARQUBE_HOME/bin/*
 
