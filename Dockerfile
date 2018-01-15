@@ -1,6 +1,4 @@
-FROM registry.access.redhat.com/rhel7.4
-
-RUN yum install openjdk-8-jdk
+FROM registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift
 
 ENV SONAR_VERSION=6.7.1 \
     SONARQUBE_HOME=/opt/sonarqube \
